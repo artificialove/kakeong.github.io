@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>beautiful keona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: pink;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    .page {
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      background-image: url('https://raw.githubusercontent.com/melanieseltzer/sparkle-background/main/sparkles-white.png'),
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Heart_coraz%C3%B3n.svg/2048px-Heart_coraz%C3%B3n.svg.png');
+      background-size: 200px, 100px;
+      background-repeat: repeat;
+    }
+    .page.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .content {
+      max-width: 600px;
+      font-size: 1.3em;
+      color: white;
+      display: none;
+      animation: fadeIn 2s ease forwards;
+    }
+    button {
+      background: white;
+      color: pink;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      font-family: 'Quicksand', sans-serif;
+      cursor: pointer;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heartTrail {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2); }
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      clip-path: path('M10 30 A10 10 0 0 1 30 10 Q20 0 10 10 Q0 0 -10 10 A10 10 0 0 1 10 30 Z');
+      animation: heartTrail 1s linear;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page active" id="page1">
+    <button onclick="revealText(1)">tap to reveal</button>
+    <div class="content" id="content1">
+      u’re not just pretty, u’re poetry in motion<br>
+      every smile, every glance, every word u say carries its own kind of magic<br>
+      u glow without even trying, and in every room u enter<br>
+      there’s a quiet awe that follows u<br>
+      because ur beauty isn’t just on the outside<br>
+      it lives in how kind ur voice sounds<br>
+      how warm ur energy feels<br>
+      and how effortlessly u make people feel seen
+    </div>
+  </div>
+
+  <div class="page" id="page2">
+    <button onclick="revealText(2)">click me</button>
+    <div class="content" id="content2">
+      u are so divine, so captivating<br>
+      as if grace decided to take human form and chose u<br>
+      u walk with elegance, speak with soul<br>
+      and shine in ur own light<br>
+      unbothered, unmatched, unforgettable
+    </div>
+  </div>
+
+  <div class="page" id="page3">
+    <button onclick="revealText(3)">show more</button>
+    <div class="content" id="content3">
+      some people are beautiful<br>
+      but u?<br>
+      u’re a feeling<br>
+      something people remember even after they walk away
+    </div>
+  </div>
+
+  <div class="page" id="page4">
+    <button onclick="revealText(4)">one last thing</button>
+    <div class="content" id="content4">
+      keep glowing, ka keona<br>
+      the world needs more of ur kind 🤍<br>
+      – with love, jihan.
+    </div>
+  </div>
+
+  <script>
+    function revealText(page) {
+      document.getElementById('content' + page).style.display = 'block';
+      if (page < 4) {
+        setTimeout(() => {
+          document.getElementById('page' + page).classList.remove('active');
+          document.getElementById('page' + (page + 1)).classList.add('active');
+        }, 3000);
+      }
+    }
+
+    // Heart cursor effect
+    document.addEventListener('mousemove', function(e) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = e.pageX + 'px';
+      heart.style.top = e.pageY + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
